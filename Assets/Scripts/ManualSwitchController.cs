@@ -15,9 +15,12 @@ using UnityEngine;
  */
 
 public class ManualSwitchController : MonoBehaviour
+
+    
 {
     // switchOff reflects whether the switch is on ot off
     private bool switchOff = true;
+    public GameObject theBulb;
 
     // determines whether the switch is enabled or not. If enabled the
     // player can toggle the switch by pressing the spacebar
@@ -25,6 +28,7 @@ public class ManualSwitchController : MonoBehaviour
 
     // switchAnimator will hold the gameobjects Animator
     private Animator switchAnimator;
+    public Animator theBulbAni;
 
     // The Awake function of each class is called before the Start function. It is
     // here you should initialise class properties/variables like those above.
@@ -33,6 +37,7 @@ public class ManualSwitchController : MonoBehaviour
         // Get the Animator off the game object this script is attached to as
         // we'll need it later
         switchAnimator = gameObject.GetComponent<Animator>();
+        theBulbAni = theBulb.GetComponent<Animator>();
 
         // Let's turn off the switch to start with
         turnOff();
@@ -50,12 +55,14 @@ public class ManualSwitchController : MonoBehaviour
     {
         switchOff = false;
         switchAnimator.SetBool("SwitchOff", switchOff);
+        theBulbAni.SetBool("BULON", switchOff);
     }
 
     public void turnOff()
     {
         switchOff = true;
         switchAnimator.SetBool("SwitchOff", switchOff);
+        theBulbAni.SetBool("BULON", switchOff);
     }
 
     public void enableSwitch()
@@ -76,6 +83,7 @@ public class ManualSwitchController : MonoBehaviour
         {
             switchOff = !switchOff;
             switchAnimator.SetBool("SwitchOff", switchOff);
+            theBulbAni.SetBool("BULON", switchOff);
         }
         else
         {
